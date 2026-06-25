@@ -76,14 +76,20 @@
 
 .status-card p,
 .feature-grid p {
-	line-height: 1.7;
 	color: var(--text);
 }
 
 .feature-grid {
 	display: grid;
-	grid-template-columns: repeat(5, minmax(0, 1fr));
 	gap: 18px;
+}
+
+.grid-5 {
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.grid-3 {
+	grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .feature-grid article {
