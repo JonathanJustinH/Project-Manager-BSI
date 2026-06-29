@@ -1,5 +1,6 @@
 import "./HomePage.css";
 import ProjectsProgressChart from "../components/ProjectsProgressChart";
+import TasksOverviewChart from "../components/TasksOverviewChart";
 
 function HomePage({ backendMessage }) {
   return (
@@ -40,6 +41,7 @@ function HomePage({ backendMessage }) {
         </article>
         <article>
           <h2>Tasks Overview</h2>
+          <TasksOverviewChart />
         </article>
         <article>
           <h2>Tickets</h2>
