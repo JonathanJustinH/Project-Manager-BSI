@@ -1,4 +1,5 @@
 import "./HomePage.css";
+import ProjectsProgressChart from "../components/ProjectsProgressChart";
 
 function HomePage({ backendMessage }) {
   return (
@@ -35,6 +36,7 @@ function HomePage({ backendMessage }) {
       <section className="feature-grid grid-3" aria-label="Homepage features">
         <article>
           <h2>Projects Progress</h2>
+          <ProjectsProgressChart />
         </article>
         <article>
           <h2>Tasks Overview</h2>
