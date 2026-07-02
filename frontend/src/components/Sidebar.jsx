@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import dashboardIcon from "../assets/Dashboard.png";
 import projectsIcon from "../assets/Projects.png";
 import tasksIcon from "../assets/Tasks.png";
@@ -17,6 +17,9 @@ const navigationItems = [
 ];
 
 export default function Sidebar({ status, user = { name: "John Doe", email: "john@example.com" } }) {
+  const location = useLocation();
+  const dashboardActive = location.pathname === "/" || location.pathname.startsWith("/calendar");
+
   return (
     <aside className="sidebar">
       <div className="brand-block">
@@ -29,7 +32,7 @@ export default function Sidebar({ status, user = { name: "John Doe", email: "joh
             key={item.id}
             to={item.to}
             end={item.to === "/"}
-            className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}
+            className={() => `nav-item ${item.id === "home" && dashboardActive ? "active" : ""}`}
           >
             <img className="nav-icon" src={item.icon} alt="" aria-hidden="true" />
             <span>{item.label}</span>
