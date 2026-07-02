@@ -16,13 +16,41 @@ const data = [
   { name: "Project 5", progress: 10 },
 ];
 
+function truncateLabel(label, maxLength = 18) {
+  if (label.length <= maxLength) {
+    return label;
+  }
+
+  return `${label.slice(0, maxLength - 1)}…`;
+}
+
+function ProjectTick({ x, y, payload }) {
+  const label = String(payload.value);
+
+  return (
+    <g transform={`translate(${x},${y})`}>
+      <text
+        x={0}
+        y={0}
+        dy={4}
+        textAnchor="end"
+        fill="var(--text-h)"
+        fontSize={14}
+      >
+        {truncateLabel(label)}
+        <title>{label}</title>
+      </text>
+    </g>
+  );
+}
+
 function ProjectsProgressChart() {
   return (
     <ResponsiveContainer width="100%" height={220}>
       <BarChart
         data={data}
         layout="vertical"
-        margin={{ top: 10, right: 20, left: 20, bottom: 10 }}
+        margin={{ top: 10, right: 20, left: 10, bottom: 10 }}
       >
         <CartesianGrid
           stroke="var(--border)"
@@ -41,8 +69,10 @@ function ProjectsProgressChart() {
         <YAxis
           type="category"
           dataKey="name"
-          width={80}
-          tick={{ fontSize: 16 }}
+          width={120}
+          tick={ProjectTick}
+          tickLine={false}
+          axisLine={false}
         />
 
         <Tooltip formatter={(value) => `${value}%`} />

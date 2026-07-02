@@ -8,10 +8,10 @@ import {
 } from "recharts";
 
 const data = [
-  { name: "To do", value: 21 },
-  { name: "In Progress", value: 37 },
-  { name: "Not Started", value: 4 },
-  { name: "Completed", value: 42 },
+  { name: "To do", value: 37 },
+  { name: "In Progress", value: 12 },
+  { name: "Not Started", value: 7 },
+  { name: "Completed", value: 9 },
 ]
 
 const COLORS = [

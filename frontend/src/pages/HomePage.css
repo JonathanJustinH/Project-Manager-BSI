@@ -74,11 +74,6 @@
 	color: var(--text-h);
 }
 
-.status-card p,
-.feature-grid p {
-	color: var(--text);
-}
-
 .feature-grid {
 	display: grid;
 	gap: 18px;
@@ -100,6 +95,10 @@
 	margin-bottom: 10px;
 	font-size: 1.2rem;
 	color: var(--text-h);
+}
+
+.feature-grid h1 {
+	color: var(--border);
 }
 
 @media (max-width: 900px) {

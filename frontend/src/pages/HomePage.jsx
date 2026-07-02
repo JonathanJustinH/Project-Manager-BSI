@@ -1,6 +1,7 @@
 import "./HomePage.css";
 import ProjectsProgressChart from "../components/ProjectsProgressChart";
 import TasksOverviewChart from "../components/TasksOverviewChart";
+import TicketsTable from "../components/TicketsTable";
 
 function HomePage({ backendMessage }) {
   return (
@@ -45,6 +46,7 @@ function HomePage({ backendMessage }) {
         </article>
         <article>
           <h2>Tickets</h2>
+          <TicketsTable></TicketsTable>
         </article>
       </section>
       <section className="feature-grid grid-3" aria-label="Homepage features">
