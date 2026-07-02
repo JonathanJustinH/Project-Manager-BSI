@@ -1,0 +1,78 @@
+.tickets-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.tickets-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.tickets-table th,
+.tickets-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 5px 5px 0 5px;
+}
+
+.ticket-col {
+  width: 22%;
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+.details-col {
+  width: 56%;
+}
+
+.ticket-name {
+  font-weight: 700;
+  color: var(--text-h);
+  margin-bottom: -4px;
+}
+
+.ticket-desc {
+  font-size: 0.7rem;
+  line-height: 1.4;
+  color: black;
+  margin-bottom: -6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ticket-due {
+  font-size: 0.67rem;
+  color: grey;
+}
+
+.status-col {
+  width: 22%;
+  padding-left: 5px;
+}
+
+.status-text {
+  font-size: 0.76rem;
+  font-weight: 700;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+
+.status-need-review {
+  color: var(--accent);
+}
+
+.status-uat {
+  color: red;
+}
+
+.status-development {
+  color: var(--border);
+}
+
+@media (max-width: 900px) {
+  .tickets-table {
+    min-width: 480px;
+  }
+}
