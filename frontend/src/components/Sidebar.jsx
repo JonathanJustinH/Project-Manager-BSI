@@ -22,10 +22,6 @@ export default function Sidebar({ status, user = { name: "John Doe", email: "joh
 
   return (
     <aside className="sidebar">
-      <div className="brand-block">
-        <p className="eyebrow">BSI</p>
-      </div>
-
       <nav className="sidebar-nav" aria-label="Primary">
         {navigationItems.map(item => (
           <NavLink
