@@ -1,0 +1,77 @@
+.activity-feed-wrap {
+  width: 100%;
+  max-height: min(calc(4 * 5.25rem), max(0px, calc(100vh - 640px)));
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
+}
+
+.activity-feed-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.activity-feed-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 10px 0;
+}
+
+.activity-avatar-cell {
+  width: 56px;
+  padding-right: 14px;
+}
+
+.activity-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #eef2ff;
+  color: #475569;
+  font-size: 1.05rem;
+  flex-shrink: 0;
+}
+
+.activity-details-cell {
+  padding-left: 0;
+}
+
+.activity-name-action {
+  margin: 0 0 4px;
+  font-weight: 700;
+  color: var(--text-h);
+  line-height: 1.35;
+}
+
+.activity-name {
+  color: var(--text-h);
+}
+
+.activity-file {
+  margin: 0 0 3px;
+  font-size: 0.82rem;
+  color: #475569;
+  line-height: 1.35;
+}
+
+.activity-time {
+  margin: 0;
+  font-size: 0.74rem;
+  color: #9ca3af;
+}
+
+@media (max-width: 900px) {
+  .activity-avatar-cell {
+    width: 48px;
+    padding-right: 10px;
+  }
+
+  .activity-feed-wrap {
+    max-height: none;
+    overflow: visible;
+  }
+}

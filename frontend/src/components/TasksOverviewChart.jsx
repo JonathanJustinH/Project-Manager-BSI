@@ -18,7 +18,7 @@ const COLORS = [
   "#3b82f6",
   "var(--accent)",
   "#9ca3af",
-  "var(--border",
+  "var(--border)",
 ];
 
 function TasksOverviewChart() {
@@ -44,6 +44,16 @@ function TasksOverviewChart() {
                     layout="vertical"
                     align="right"
                     verticalAlign="middle"
+                    formatter={(value) => {
+                        const item = data.find((d) => d.name === value);
+                        return (
+                            <span>
+                                <span style={{ color: "black", marginLeft: "10px"}}>
+                                    {value} {item?.value}
+                                </span>
+                            </span>
+                        );
+                    }}
                 />
             </PieChart>
         </ResponsiveContainer>

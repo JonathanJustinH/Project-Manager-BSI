@@ -2,6 +2,8 @@ import "./HomePage.css";
 import ProjectsProgressChart from "../components/ProjectsProgressChart";
 import TasksOverviewChart from "../components/TasksOverviewChart";
 import TicketsTable from "../components/TicketsTable";
+import DocumentsTable from "../components/DocumentsTable";
+import ActivityTable from "../components/ActivityFeed";
 
 function HomePage({ backendMessage }) {
   return (
@@ -52,9 +54,11 @@ function HomePage({ backendMessage }) {
       <section className="feature-grid grid-3" aria-label="Homepage features">
         <article>
           <h2>Document Status</h2>
+          <DocumentsTable />
         </article>
         <article>
           <h2>Activity Feed</h2>
+          <ActivityTable />
         </article>
         <article>
           <h2>Calendar</h2>

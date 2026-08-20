@@ -64,6 +64,22 @@
   gap: 16px;
 }
 
+.calendar-month-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.calendar-month-button {
+  border: 1px solid var(--border);
+  background: #f9fafb;
+  color: #374151;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
 .calendar-weekdays,
 .calendar-grid {
   display: grid;
@@ -100,6 +116,12 @@
 
 .calendar-day.has-event {
   background: #f8fafc;
+}
+
+.calendar-day.today {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.18);
+  background: #eff6ff;
 }
 
 .calendar-day-number {

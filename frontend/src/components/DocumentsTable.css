@@ -1,0 +1,104 @@
+.documents-table-wrap {
+  width: 100%;
+  max-height: min(calc(4 * 5.25rem), max(0px, calc(100vh - 640px)));
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
+}
+
+.documents-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.documents-table th,
+.documents-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 8px 0;
+  margin-top: 10px;
+  height: 3.25rem;
+}
+
+.document-col {
+  width: 22%;
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+.details-col {
+  width: 56%;
+  padding-right: 0;
+}
+
+.document-col {
+  width: 22%;
+  padding-left: 0;
+}
+
+.document-name {
+  font-weight: 700;
+  color: var(--text-h);
+  margin-bottom: 1px;
+  line-height: 1.2;
+}
+
+.document-desc {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.15;
+  color: #475569;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.document-due {
+  margin: 0;
+  font-size: 0.74rem;
+  color: #9ca3af;
+}
+
+.status-col {
+  width: 22%;
+  padding-left: 5px;
+}
+
+.status-text {
+  font-size: 0.76rem;
+  font-weight: 700;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+
+.status-need-review {
+  color: var(--accent);
+}
+
+.status-uat {
+  color: red;
+}
+
+.status-development {
+  color: var(--border);
+}
+
+@media (max-width: 900px) {
+  .documents-table {
+    min-width: 480px;
+  }
+
+  .documents-table-wrap {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .details-col {
+    padding-right: 0;
+  }
+
+  .document-col {
+    padding-left: 0;
+  }
+}

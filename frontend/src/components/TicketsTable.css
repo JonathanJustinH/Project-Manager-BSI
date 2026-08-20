@@ -1,6 +1,18 @@
 .tickets-table-wrap {
   width: 100%;
-  overflow-x: auto;
+  max-height: calc(4 * 3rem);
+  overflow: auto;
+  scrollbar-gutter: stable;
+}
+
+.tickets-table-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(4 * 3rem);
+  color: grey;
+  font-size: 0.82rem;
+  text-align: center;
 }
 
 .tickets-table {
@@ -13,7 +25,8 @@
 .tickets-table td {
   text-align: left;
   vertical-align: top;
-  padding: 5px 5px 0 5px;
+  padding: 1px 5px;
+  height: 3rem;
 }
 
 .ticket-col {
@@ -33,17 +46,17 @@
 }
 
 .ticket-desc {
-  font-size: 0.7rem;
-  line-height: 1.4;
+  font-size: 0.64rem;
+  line-height: 1.1;
   color: black;
-  margin-bottom: -6px;
+  margin-bottom: -4px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .ticket-due {
-  font-size: 0.67rem;
+  font-size: 0.62rem;
   color: grey;
 }
 

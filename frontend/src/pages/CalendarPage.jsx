@@ -1,44 +1,30 @@
+import { useMemo, useState } from "react";
 import "./CalendarPage.css";
 
 const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-const days = [
-  { day: 30, muted: true },
-  { day: 1 },
-  { day: 2 },
-  { day: 3 },
-  { day: 4 },
-  { day: 5 },
-  { day: 6 },
-  { day: 7 },
-  { day: 8, event: "Project review" },
-  { day: 9 },
-  { day: 10, event: "Client call" },
-  { day: 11 },
-  { day: 12 },
-  { day: 13 },
-  { day: 14 },
-  { day: 15, event: "UAT window" },
-  { day: 16 },
-  { day: 17 },
-  { day: 18, event: "Design sync" },
-  { day: 19 },
-  { day: 20 },
-  { day: 21 },
-  { day: 22 },
-  { day: 23, event: "Sprint planning" },
-  { day: 24 },
-  { day: 25 },
-  { day: 26 },
-  { day: 27 },
-  { day: 28 },
-  { day: 29 },
-  { day: 30 },
-  { day: 31 },
-  { day: 1, muted: true },
-  { day: 2, muted: true },
-  { day: 3, muted: true },
-  { day: 4, muted: true },
+
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
+
+const staticEvents = {
+  8: "Project review",
+  10: "Client call",
+  15: "UAT window",
+  18: "Design sync",
+  23: "Sprint planning",
+};
 
 const agendaItems = [
   { time: "09:00", title: "Daily standup", note: "Team status and blockers" },
@@ -48,10 +34,65 @@ const agendaItems = [
 ];
 
 export default function CalendarPage() {
+  const now = new Date();
+  const [currentMonthDate, setCurrentMonthDate] = useState(
+    new Date(now.getFullYear(), now.getMonth(), 1)
+  );
+
+  const days = useMemo(() => {
+    const year = currentMonthDate.getFullYear();
+    const month = currentMonthDate.getMonth();
+
+    const firstDayOfMonth = new Date(year, month, 1).getDay();
+    const daysInCurrentMonth = new Date(year, month + 1, 0).getDate();
+    const daysInPreviousMonth = new Date(year, month, 0).getDate();
+
+    const cells = [];
+
+    for (let index = firstDayOfMonth - 1; index >= 0; index -= 1) {
+      cells.push({ day: daysInPreviousMonth - index, muted: true });
+    }
+
+    for (let day = 1; day <= daysInCurrentMonth; day += 1) {
+      cells.push({ day, event: staticEvents[day] });
+    }
+
+    while (cells.length < 42) {
+      cells.push({ day: cells.length - (firstDayOfMonth + daysInCurrentMonth) + 1, muted: true });
+    }
+
+    return cells;
+  }, [currentMonthDate]);
+
+  const monthTitle = `${monthNames[currentMonthDate.getMonth()]} ${currentMonthDate.getFullYear()}`;
+
+  const goToToday = () => {
+    const today = new Date();
+    setCurrentMonthDate(new Date(today.getFullYear(), today.getMonth(), 1));
+  };
+
+  const goToPreviousMonth = () => {
+    setCurrentMonthDate((prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
+  };
+
+  const goToNextMonth = () => {
+    setCurrentMonthDate((prev) => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
+  };
+
+  const isToday = (item) => {
+    if (item.muted) return false;
+
+    return (
+      item.day === now.getDate() &&
+      currentMonthDate.getMonth() === now.getMonth() &&
+      currentMonthDate.getFullYear() === now.getFullYear()
+    );
+  };
+
   return (
     <section className="calendar-page">
       <div className="calendar-actions">
-        <button type="button" className="calendar-action">Today</button>
+        <button type="button" className="calendar-action" onClick={goToToday}>Today</button>
         <button type="button" className="calendar-action calendar-action-primary">Add event</button>
       </div>
 
@@ -59,7 +100,15 @@ export default function CalendarPage() {
         <article className="calendar-panel calendar-grid-panel">
           <div className="calendar-month-bar">
             <div>
-              <p className="calendar-month-label">July 2026</p>
+              <p className="calendar-month-label">{monthTitle}</p>
+            </div>
+            <div className="calendar-month-nav" aria-label="Month navigation">
+              <button type="button" className="calendar-month-button" onClick={goToPreviousMonth}>
+                Prev
+              </button>
+              <button type="button" className="calendar-month-button" onClick={goToNextMonth}>
+                Next
+              </button>
             </div>
           </div>
 
@@ -73,7 +122,9 @@ export default function CalendarPage() {
             {days.map((item, index) => (
               <div
                 key={`${item.day}-${index}`}
-                className={`calendar-day ${item.muted ? "muted" : ""} ${item.event ? "has-event" : ""}`}
+                className={`calendar-day ${item.muted ? "muted" : ""} ${item.event ? "has-event" : ""} ${
+                  isToday(item) ? "today" : ""
+                }`}
                 role="gridcell"
               >
                 <span className="calendar-day-number">{item.day}</span>
