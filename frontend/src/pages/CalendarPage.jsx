@@ -35,6 +35,7 @@ const agendaItems = [
 
 export default function CalendarPage() {
   const now = new Date();
+  const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   const [currentMonthDate, setCurrentMonthDate] = useState(
     new Date(now.getFullYear(), now.getMonth(), 1)
   );
@@ -50,15 +51,20 @@ export default function CalendarPage() {
     const cells = [];
 
     for (let index = firstDayOfMonth - 1; index >= 0; index -= 1) {
-      cells.push({ day: daysInPreviousMonth - index, muted: true });
+      const date = new Date(year, month - 1, daysInPreviousMonth - index);
+
+      cells.push({ day: daysInPreviousMonth - index, muted: true, date });
     }
 
     for (let day = 1; day <= daysInCurrentMonth; day += 1) {
-      cells.push({ day, event: staticEvents[day] });
+      cells.push({ day, event: staticEvents[day], date: new Date(year, month, day) });
     }
 
     while (cells.length < 42) {
-      cells.push({ day: cells.length - (firstDayOfMonth + daysInCurrentMonth) + 1, muted: true });
+      const day = cells.length - (firstDayOfMonth + daysInCurrentMonth) + 1;
+      const date = new Date(year, month + 1, day);
+
+      cells.push({ day, muted: true, date });
     }
 
     return cells;
@@ -80,13 +86,15 @@ export default function CalendarPage() {
   };
 
   const isToday = (item) => {
-    if (item.muted) return false;
+    if (!item.date) return false;
 
-    return (
-      item.day === now.getDate() &&
-      currentMonthDate.getMonth() === now.getMonth() &&
-      currentMonthDate.getFullYear() === now.getFullYear()
-    );
+    return item.date.getFullYear() === now.getFullYear() && item.date.getMonth() === now.getMonth() && item.date.getDate() === now.getDate();
+  };
+
+  const isPastDay = (item) => {
+    if (!item.date) return false;
+
+    return item.date < todayStart && !isToday(item);
   };
 
   return (
@@ -124,7 +132,7 @@ export default function CalendarPage() {
                 key={`${item.day}-${index}`}
                 className={`calendar-day ${item.muted ? "muted" : ""} ${item.event ? "has-event" : ""} ${
                   isToday(item) ? "today" : ""
-                }`}
+                } ${isPastDay(item) ? "past" : ""}`}
                 role="gridcell"
               >
                 <span className="calendar-day-number">{item.day}</span>

@@ -114,6 +114,25 @@
   opacity: 0.45;
 }
 
+.calendar-day.past {
+  background: #f1f5f9;
+  border-color: #d1d5db;
+}
+
+.calendar-day.past.has-event {
+  background: #f1f5f9;
+  border-color: #d1d5db;
+}
+
+.calendar-day.past .calendar-day-number {
+  color: #64748b;
+}
+
+.calendar-day.past .calendar-event {
+  background: #e2e8f0;
+  color: #475569;
+}
+
 .calendar-day.has-event {
   background: #f8fafc;
 }
